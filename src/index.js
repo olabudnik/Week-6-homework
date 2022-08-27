@@ -31,26 +31,31 @@ function submitcity(event) {
 let cityform = document.querySelector("#city-form");
 cityform.addEventListener("submit", submitcity);
 
-// Display a fake temperature (i.e 17) in Celsius and add a link to convert it to Fahrenheit.
+// Display temperature in Celsius and add a link to convert it to Fahrenheit.
 // When clicking on it, it should convert the temperature to Fahrenheit. When clicking on Celsius, it should convert it back to Celsius.
 
 function convertToCelsius(event) {
   event.preventDefault();
-  let currentTemperatureC = document.querySelector("#temp");
-  currentTemperatureC.innerHTML = 26;
+//   let celsiusTemparature = 
+//   let currentTemperatureC = document.querySelector("#temp");
+//   currentTemperatureC.innerHTML = math.round(celsiusTemparature);
 }
 
-let Celsius = document.querySelector("#celsius-link");
-Celsius.addEventListener("click", convertToCelsius);
+// let Celsius = document.querySelector("#celsius-link");
+// Celsius.addEventListener("click", convertToCelsius);
 
 function convertToFahrenheit(event) {
   event.preventDefault();
+  let fahrenheitTemparature = (celsiusTemparature * 9) / 5 + 32; 
   let currentTemperatureF = document.querySelector("#temp");
-  currentTemperatureF.innerHTML = 78;
+  currentTemperatureF.innerHTML = Math.round(fahrenheitTemparature);
 }
 
 let Fahrenheit = document.querySelector("#fahrenheit-link");
 Fahrenheit.addEventListener("click", convertToFahrenheit);
+
+let celsiusTemparature = null; 
+celsiusTemparature = response.data.main.temp;
 
 // Current Location button. When clicking on it, it uses the Geolocation API to get your GPS coordinates and display and the city and current temperature using the OpenWeather API.
 
@@ -70,6 +75,10 @@ function showWeather(response) {
   document.querySelector("#temp").innerHTML = Math.round(response.data.main.temp);
   document.querySelector("#humidity").innerHTML = response.data.main.humidity; 
   document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed); 
+   let iconElement = document.querySelector("#icon");
+iconElement.setAttribute("src",
+ `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 
 }
 

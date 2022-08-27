@@ -10,7 +10,8 @@ span.units {font-size: medium;}
     min-height: 100vh;
     padding: 5%;
     background-color: #63CADF;
-    border-radius: 50px
+    background-image: url("crs/background image.jpg");
+    border-radius: 50px;
 }
 .searchbar {width: 100%;
 max-width: 700px;
@@ -42,6 +43,7 @@ height: 60px
 }
 
 .col-3, .col-6 {text-align: center;
+    
 font-size: large;
 }
 
@@ -59,3 +61,7 @@ color: #FFB404;
 font-size: 60px;
 }
 
+#city-name 
+{ text-align: center;
+ font-size: 50px;
+}
