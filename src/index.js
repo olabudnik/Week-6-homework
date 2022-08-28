@@ -15,7 +15,6 @@ let dayoftheweek = days[now.getDay()];
 dates.innerHTML = `${dayoftheweek}, ${hour}:${minutes}`;
 
 // Add a search engine, when searching for a city (i.e. Paris), display the city name on the page after the user submits the form.
-//
 function submitcity(event) {
   event.preventDefault();
   let cityInput = document.querySelector("#city-input");
@@ -54,6 +53,7 @@ Celsius.addEventListener("click", convertToCelsius);
 
 let celsiusTemparature = null; 
 
+
 // Current Location button. When clicking on it, it uses the Geolocation API to get your GPS coordinates and display and the city and current temperature using the OpenWeather API.
 
 function handlePosition(position) {
@@ -86,3 +86,43 @@ function getCurrentPosition() {
 let button = document.querySelector("#current-position");
 button.addEventListener("click", getCurrentPosition);
 
+// display forecast 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+// creating a loop 
+ let forecastHTML = `<div class="row">`;
+ let days = ["Tue", "Wed", "Thu"];
+ days.forEach(function (day) {
+
+ 
+    forecastHTML = forecastHTML + `
+      <div class="col-2">
+        <div class="weather-forecast-date">${day}</div>
+        <img
+          src="http://openweathermap.org/img/wn/50d@2x.png"
+          alt=""
+          width="42"
+        />
+        <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temperature-max"> 18° </span>
+          <span class="weather-forecast-temperature-min"> 16° </span>
+        </div>
+      </div>
+  `;
+})
+forecastHTMl = forecastHTML + `</div>`;
+forecastElement.innerHTML = forecastHTML;
+}
+
+displayForecast();
+
+// coordinates for the forecast 
+
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "62ba54e8cfba74fb731ce2be029cb2c";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+  console.log(apiUrl);
+}
+ getForecast(); 
