@@ -32,25 +32,25 @@ cityform.addEventListener("submit", submitcity);
 // Display temperature in Celsius and add a link to convert it to Fahrenheit.
 // When clicking on it, it should convert the temperature to Fahrenheit. When clicking on Celsius, it should convert it back to Celsius.
 
-function convertToCelsius(event) {
-  event.preventDefault();
-//   let celsiusTemparature = 
-//   let currentTemperatureC = document.querySelector("#temp");
-//   currentTemperatureC.innerHTML = math.round(celsiusTemparature);
-}
-
-// let Celsius = document.querySelector("#celsius-link");
-// Celsius.addEventListener("click", convertToCelsius);
-
 function convertToFahrenheit(event) {
   event.preventDefault();
+  let currentTemperature = document.querySelector("#temp");
   let fahrenheitTemparature = (celsiusTemparature * 9) / 5 + 32; 
-  let currentTemperatureF = document.querySelector("#temp");
-  currentTemperatureF.innerHTML = Math.round(fahrenheitTemparature);
+  currentTemperature.innerHTML = Math.round(fahrenheitTemparature);
+}
+
+function convertToCelsius(event) {
+  event.preventDefault();
+  let currentTemperature = document.querySelector("#temp");
+  currentTemperature.innerHTML = Math.round(celsiusTemparature);
 }
 
 let Fahrenheit = document.querySelector("#fahrenheit-link");
 Fahrenheit.addEventListener("click", convertToFahrenheit);
+
+// Go back to С from F
+let Celsius = document.querySelector("#celsius-link");
+Celsius.addEventListener("click", convertToCelsius);
 
 let celsiusTemparature = null; 
 
