@@ -3,14 +3,12 @@ let dates = document.querySelector("#date");
 let day = now.getDay();
 let hour = now.getHours();
 let minutes = now.getMinutes();
-
 if (hour < 10) {
   hour = `0${hour}`;
 }
 if (minutes < 10) {
   minutes = `0${minutes}`;
 }
-
 let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 let dayoftheweek = days[now.getDay()];
 
@@ -55,7 +53,6 @@ let Fahrenheit = document.querySelector("#fahrenheit-link");
 Fahrenheit.addEventListener("click", convertToFahrenheit);
 
 let celsiusTemparature = null; 
-celsiusTemparature = response.data.main.temp;
 
 // Current Location button. When clicking on it, it uses the Geolocation API to get your GPS coordinates and display and the city and current temperature using the OpenWeather API.
 
@@ -76,10 +73,10 @@ function showWeather(response) {
   document.querySelector("#humidity").innerHTML = response.data.main.humidity; 
   document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed); 
    let iconElement = document.querySelector("#icon");
-iconElement.setAttribute("src",
+  iconElement.setAttribute("src",
  `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
   iconElement.setAttribute("alt", response.data.weather[0].description);
-
+celsiusTemparature = response.data.main.temp;
 }
 
 function getCurrentPosition() {
