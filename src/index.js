@@ -14,6 +14,9 @@ let dayoftheweek = days[now.getDay()];
 
 dates.innerHTML = `${dayoftheweek}, ${hour}:${minutes}`;
 
+
+
+
 // Add a search engine, when searching for a city (i.e. Paris), display the city name on the page after the user submits the form.
 function submitcity(event) {
   event.preventDefault();
@@ -100,18 +103,21 @@ function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
 // creating a loop 
  let forecastHTML = `<div class="row">`;
- days.forEach(function(forecastDay) {
+forecast.forEach(function (forecastDay) {  
+  const date = new Date(forecastDay.dt * 1000);
+  let low = Math.round(forecastDay.temp.min);
+	let high = Math.round(forecastDay.temp.max);
     forecastHTML = forecastHTML + `
       <div class="col-2">
-        <div class="weather-forecast-date">${forecastDay.dt}</div>
+        <div class="weather-forecast-date">${days[date.getDay()]}</div>
         <img
           src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"
           alt=""
           width="42"
         />
         <div class="weather-forecast-temperatures">
-          <span class="weather-forecast-temperature-max"> ${forecastDay.temp.max} </span>
-          <span class="weather-forecast-temperature-min"> ${forecastDay.temp.min}  </span>
+          <span class="weather-forecast-temperature-max"> ${high}  </span>
+          <span class="weather-forecast-temperature-min"> ${low}  </span>
         </div>
       </div>
   `;
